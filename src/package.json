@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon app.js"
+    "dev": "node app.js",
+    "start": "nodemon app.js"
   },
   "license": "UNLICENSED",
   "dependencies": {
@@ -12,7 +13,10 @@
     "cookie-parser": "^1.4.6",
     "cookie-session": "^2.0.0",
     "ejs": "^3.1.8",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "passport": "^0.6.0",
+    "passport-github2": "^0.1.12",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

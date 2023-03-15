@@ -1,4 +1,3 @@
-
 const users = {
   1: {
     id: 1,
@@ -61,12 +60,12 @@ const votes = [
 ]
 
 function debug() {
-  console.log("==== DB DEBUGING ====")
+  console.log("==== DB DEBUGGING ====")
   console.log("users", users)
   console.log("posts", posts)
   console.log("comments", comments)
   console.log("votes", votes)
-  console.log("==== DB DEBUGING ====")
+  console.log("==== DB DEBUGGING ====")
 }
 
 function getUser(id) {
@@ -108,7 +107,7 @@ function getPost(id) {
   return decoratePost(posts[id]);
 }
 
-function addPost(title, link, creator, description, subgroup) {
+function addPost(title = "noTitle", link, creator, description, subgroup) {
   let id = Math.max(...Object.keys(posts).map(Number)) + 1;
   let post = {
     id,
