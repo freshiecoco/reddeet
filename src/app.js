@@ -7,13 +7,14 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 
 const postRouter = require("./routers/postRouter");
+const subRouter = require("./routers/subRouter");
 app.use("/posts", postRouter);
+app.use("/subs", subRouter);
 
 app.get("/", (req, res) => {
   const posts = database.getPosts(20);
-  res.render("posts/posts", { posts });
+  res.render("index", { posts });
 });
-
 
 app.get("/debug", (req, res) => {
   db.debug();
@@ -23,4 +24,3 @@ app.get("/debug", (req, res) => {
 app.listen(PORT, () =>
   console.log(`server should be running at http://localhost:${PORT}/`)
 );
-
