@@ -6,8 +6,8 @@ const app = express();
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 
-const postRouter = require("./routers/postRouter");
-const subRouter = require("./routers/subRouter");
+const postRouter = require("./routes/postRouter");
+const subRouter = require("./routes/subRouter");
 app.use("/posts", postRouter);
 app.use("/subs", subRouter);
 
