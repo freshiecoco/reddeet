@@ -172,5 +172,6 @@ module.exports = {
   deletePost,
   getSubs,
   addComment,
+  decoratePost,
 };
 

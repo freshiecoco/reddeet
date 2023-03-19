@@ -6,18 +6,19 @@ const app = express();
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 
-const postRouter = require("./routes/postRouter");
-const subRouter = require("./routes/subRouter");
+const postRouter = require("./routes/postRoute");
+const subRouter = require("./routes/subRoute");
 app.use("/posts", postRouter);
 app.use("/subs", subRouter);
 
 app.get("/", (req, res) => {
-  const posts = database.getPosts(20);
+  const posts = [];
+  database.getPosts(20).forEach(post => posts.push(database.decoratePost(post)));
   res.render("index", { posts });
 });
 
 app.get("/debug", (req, res) => {
-  db.debug();
+  database.debug();
   res.redirect("/");
 });
 

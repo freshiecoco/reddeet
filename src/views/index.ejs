@@ -7,10 +7,13 @@
   <title>Posts</title>
 </head>
 <body>
+  <h2><a href="/subs/list">sub list</a></h2>
   <% posts.forEach(post => { %>
-   <p> <%= post.title %> </p>
-   <p> <%= post.creator %> </p>
-   <p> Subgroup: <a href="/subs/<%= post.subgroup %>"><%= post.subgroup%></a> </p>
+   <h3><a href="posts/show/<%= post.id %>"><%= post.title %></a> </h3>
+   <p>j/<a href="/subs/show/<%= post.subgroup %>"><%= post.subgroup %></a> &#8226; Posted by u/<%= post.creator.uname %> </p>
+   <p><%= post.description %></p>
+   <p><a href="<%= post.link %>" target="__blank">Link</a></p>
+   <br>
   <% }) %>
 
   <a href="/posts/create">Create new Post</a>
