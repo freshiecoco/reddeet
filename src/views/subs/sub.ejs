@@ -10,7 +10,7 @@
   <h2>Posts in j/<%= subName %></h2>
   <% posts.forEach(post => { %>
     <h3><a href="/posts/show/<%= post.id %>"><%= post.title %></a> </h3>
-    <p>j/<a href="/subs/show/<%= post.subgroup %>"><%= post.subgroup%></a> &#8226; Posted by u/<%= post.creator.uname %> </p>
+    <p>j/<a href="/subs/show/<%= post.subgroup %>"><%= post.subgroup %></a> &#8226;Posted by u/<%= post.creator.uname %>, <%= post.timeago %></p>
     <p><%= post.description %></p>
     <p><a href="<%= post.link %>" target="__blank">Link</a></p>
     <br>

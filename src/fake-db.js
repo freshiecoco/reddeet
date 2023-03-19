@@ -1,3 +1,5 @@
+const util = require("./util");
+
 const users = {
   1: {
     id: 1,
@@ -85,7 +87,9 @@ function decoratePost(post) {
     ...post,
     creator: users[post.creator],
     votes: getVotesForPost(post.id),
-    comments: Object.values(comments).filter(comment => comment.post_id === post.id).map(comment => ({ ...comment, creator: users[comment.creator] })),
+    comments: Object.values(comments).filter(comment => comment.post_id === post.id).map(comment => 
+      ({ ...comment, creator: users[comment.creator], timeago: util.timeAgo(comment.timestamp) })),
+    timeago: util.timeAgo(post.timestamp),
   }
   return post;
 }
@@ -158,8 +162,6 @@ function addComment(post_id, creator, description) {
   comments[id] = comment;
   return comment;
 }
-
-
 
 module.exports = {
   debug,

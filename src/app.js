@@ -8,6 +8,7 @@ app.use(express.urlencoded({ extended: false }));
 
 const postRouter = require("./routes/postRoute");
 const subRouter = require("./routes/subRoute");
+
 app.use("/posts", postRouter);
 app.use("/subs", subRouter);
 

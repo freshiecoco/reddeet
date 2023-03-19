@@ -8,9 +8,27 @@
 </head>
 <body>
   <h3><%= post.title %> </h3>
-  <p>j/<a href="/subs/show/<%= post.subgroup %>"><%= post.subgroup%></a> &#8226; Posted by u/<%= post.creator.uname %> </p>
+  <p>j/<a href="/subs/show/<%= post.subgroup %>"><%= post.subgroup %></a> · Posted by u/<%= post.creator.uname %> <%= post.timeago %></p>
   <p><%= post.description %></p>
   <p><a href="<%= post.link %>" target="__blank">Link</a></p>
+
+  <h4>Comments:</h4>
+
+  <% post.comments.forEach(comment => { %>
+    <div>
+      <p>u/<%= comment.creator.uname %> · <%= comment.timeago %></p>
+      <p><%= comment.description %></p>
+    </div><br>
+  <% }) %>
+
+  <form action="/posts/comment-create/<%= post.id %>" method="post">
+    <label for="creator">Creator</label><br>
+    <input type="text" name="creator"><br>
+    <label for="description">Description</label><br>
+    <input type="text" name="description"><br>
+    <button>Comment</button>
+  </form>
+
   <br>
   <a href="/">Back to Home</a>
 </body>
