@@ -1,22 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jeddit</title>
-</head>
-<body>
-  <h2><a href="/subs/list">Sub list</a></h2>
-  <h2><a href="/auth/login">Log in</a></h2>
-  <% posts.forEach(post => { %>
-   <h3><a href="posts/show/<%= post.id %>"><%= post.title %></a> </h3>
+
+<% posts.forEach(post => { %>
+  <div class="border rounded p-4 mb-4 bg-light">
+   <h3 class="bg-primary p-2"><a href="posts/show/<%= post.id %>"
+     class="text-white text-decoration-none"><%= post.title %></a> </h3>
    <p>j/<a href="/subs/show/<%= post.subgroup %>"><%= post.subgroup %></a> &#8226;Posted by u/<%= post.creator.uname %>, <%= post.timeago %></p>
    <p><%= post.description %></p>
    <p><a href="<%= post.link %>" target="__blank">Link</a></p>
-   <br>
-  <% }) %>
+  </div>
+<% }) %>
 
-  <a href="/posts/create">Create new Post</a>
-</body>
-</html>

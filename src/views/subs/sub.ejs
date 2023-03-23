@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= subName %></title>
-</head>
-<body>
   <h2>Posts in j/<%= subName %></h2>
   <% posts.forEach(post => { %>
     <h3><a href="/posts/show/<%= post.id %>"><%= post.title %></a> </h3>
@@ -15,6 +6,3 @@
     <p><a href="<%= post.link %>" target="__blank">Link</a></p>
     <br>
   <% }) %>
-  <a href="/">Back to Home</a>
-</body>
-</html>
