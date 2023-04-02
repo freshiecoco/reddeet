@@ -13,7 +13,8 @@ router.get("/show/:postid", (req, res) => {
 });
 
 router.post("/create", (req, res) => {
-  const {title, link, creator, description, subgroup} = req.body;
+  const {title, link, subgroup, description} = req.body;
+  const creator = req.user.id;
   database.addPost(title, link, creator, description, subgroup);
   res.redirect("/");
 });

@@ -1,7 +1,7 @@
 const database = require("../fake-db");
 
 const findOne = (uname) => {
-    const user = database.find(user => user.uname === uname);
+    const user = database.getUserByUsername(uname);
     if (user) {
         return user;
     }
@@ -10,7 +10,7 @@ const findOne = (uname) => {
 }
 
 const findById = (id) => {
-    const user = database.find(user => user.id === id);
+    const user = database.getUser(id);
     if (user) {
         return user;
     }

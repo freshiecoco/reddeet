@@ -25,12 +25,14 @@ const passport = require("passport");
 const postRouter = require("./routes/postRoute");
 const subRouter = require("./routes/subRoute");
 const authRouter = require("./routes/authRoute");
+const { setLoginStatus } = require("./middleware/checkAuth");
 
 app.use(express.json());
 app.use(expressLayouts);
 app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(setLoginStatus);
 
 app.use((req, res, next) => {
   console.log(`User details are: `);
