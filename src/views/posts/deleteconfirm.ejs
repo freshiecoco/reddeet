@@ -1,0 +1,14 @@
+<% if (isLoggedIn &&post.creator.id == loggedInId) { %>
+    <h2>Delete the following post?</h2>
+    <h3><%= post.title %> </h3>
+      <p>j/<a href="/subs/show/<%= post.subgroup %>"><%= post.subgroup %></a> · Posted by u/<%= post.creator.uname %> <%= post.timeago %></p>
+      <p><%= post.description %></p><br>
+    <form action="/posts/delete/<%= post.id %>" method="POST">
+        <button>Delete</button>
+    </form>
+    <a href="/posts/show/<%= post.id %>">NOPE</a>
+<% } else { %>
+    <h5>You must log in before you delete a post!</h5>
+    <a href="/auth/login">Login</a>
+<% } %>
+  

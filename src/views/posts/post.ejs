@@ -4,6 +4,40 @@
   <p><%= post.description %></p>
   <p><a href="<%= post.link %>" target="__blank">Link</a></p>
 
+  <style>
+    .hidden {
+        display: none;
+    }
+  </style>
+
+  <script>
+    function toggleForm() {
+        const editForm = document.getElementById('editForm');
+        editForm.classList.toggle('hidden');
+    }
+  </script>
+
+  <% if (isLoggedIn && post.creator.id == loggedInId) { %>
+    <a href="/posts/deleteconfirm/<%= post.id %>">Delete</a>
+
+    <button id="showFormBtn" onclick="toggleForm()">Edit</button>
+    <div id="editForm" class="hidden">
+      <form action="/posts/edit/<%= post.id %>" method="POST">
+        <label for="title">Title</label><br>
+        <input name="title" value="<%= post.title %>"><br>
+        <label for="subgroup">Subgroup</label><br>
+        <input name="subgroup" value="<%= post.subgroup %>"><br>
+        <label for="link">Link</label><br>
+        <input name="link" value="<%= post.link %>"><br>
+        <label for="description">Description</label><br>
+        <textarea name="description" rows="4" cols="50"><%= post.description %></textarea><br>
+        <button>Submit</button>
+      </form>
+    </div>
+  <% } %>
+
+  
+
   <h4>Comments:</h4>
 
   <% post.comments.forEach(comment => { %>
@@ -13,13 +47,15 @@
     </div><br>
   <% }) %>
 
+  <% if (isLoggedIn) { %>
   <form action="/posts/comment-create/<%= post.id %>" method="post">
-    <label for="creator">Creator</label><br>
-    <input type="text" name="creator"><br>
     <label for="description">Description</label><br>
-    <input type="text" name="description"><br>
+    <textarea name="description" rows="4" cols="50"></textarea><br>
     <button>Comment</button>
   </form>
-
+  <% } else { %>
+    <h5>Login first to comment</h5>
+    <a href="/auth/login">Login</a>
+  <% } %>
   <br>
   

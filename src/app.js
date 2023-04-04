@@ -34,18 +34,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(setLoginStatus);
 
-app.use((req, res, next) => {
-  console.log(`User details are: `);
-  console.log(req.user);
-
-  console.log("Entire session object:");
-  console.log(req.session);
-
-  console.log(`Session details are: `);
-  console.log(req.session.passport);
-  next();
-});
-
 app.get("/", (req, res) => {
   const posts = [];
   database.getPosts(20).forEach(post => posts.push(database.decoratePost(post)));

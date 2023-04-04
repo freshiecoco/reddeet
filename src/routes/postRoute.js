@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const database = require("../fake-db");
-const queryString = require('querystring');
 
 router.get("/create", (req, res) => {
   res.render("posts/createPost");
@@ -21,9 +20,25 @@ router.post("/create", (req, res) => {
 
 router.post("/comment-create/:postid", (req, res) => {
   const post = database.getPost(req.params.postid);
-  const {creator, description} = req.body;
+  const creator = req.user.id;
+  const {description} = req.body;
   database.addComment(post.id, creator, description);
   res.redirect(`/posts/show/${post.id}`);
 });
+
+router.get("/deleteconfirm/:postid", (req, res) => {
+  const post = database.getPost(req.params.postid);
+  res.render("posts/deleteconfirm", {post});  
+});
+
+router.post("/delete/:postid", (req, res) => {
+  database.deletePost(req.params.postid);
+  res.redirect('/');
+});
+
+router.post("/edit/:postid", (req, res) => {
+  database.editPost(req.params.postid, req.body);
+  res.redirect(`/posts/show/${req.params.postid}`);
+})
 
 module.exports = router;

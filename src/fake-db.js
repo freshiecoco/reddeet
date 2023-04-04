@@ -23,6 +23,19 @@ const users = {
   },
 };
 
+function addUser(newUname, newPassword)
+{
+  const newId = Object.keys(users).length + 1;
+  console.log(newId);
+  users[newId] = {
+    id: newId,
+    uname: newUname,
+    password: newPassword,
+  };
+
+  console.log(users);
+}
+
 const posts = {
   101: {
     id: 101,
@@ -32,6 +45,7 @@ const posts = {
     creator: 1,
     subgroup: 'food',
     timestamp: 1643648446955,
+    votes: 0
   },
   102: {
     id: 102,
@@ -41,6 +55,7 @@ const posts = {
     creator: 2,
     subgroup: 'documentaries',
     timestamp: 1642611742010,
+    votes: 0
   },
 };
 
@@ -163,7 +178,12 @@ function addComment(post_id, creator, description) {
   return comment;
 }
 
+function notTaken(newUname) {
+  return !Object.values(users).some(user => user.uname === newUname);
+}
+
 module.exports = {
+  addUser,
   debug,
   getUser,
   getUserByUsername,
@@ -175,5 +195,6 @@ module.exports = {
   getSubs,
   addComment,
   decoratePost,
+  notTaken,
 };
 
